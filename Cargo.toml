@@ -1,0 +1,11 @@
+[package]
+name = "katvan-web"
+edition = "2024"
+publish = false
+
+[dependencies]
+anyhow = "1"
+argh = "0.1"
+serde = "1"
+tera = "1"
+ureq = { version = "3.1", features = ["json"] }

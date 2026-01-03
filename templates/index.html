@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="A bare-bones graphical editor for Typst files, with a strong bias for Right-to-Left editing">
+
+        <title>Katvan</title>
+
+        <link href="/assets/bootstrap-5.3.8.min.css" rel="stylesheet">
+        <link href="/assets/fontawesome-7.1.0-all.min.css" rel="stylesheet">
+        <link href="/assets/style.css" rel="stylesheet">
+
+        <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/katvan.svg" width="30" height="30" class="d-inline-block align-middle" alt="Katvan logo" />
+                    Katvan
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#download">Download</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://github.com/IgKh/katvan" target="_blank"><i class="fab fa-github"></i> GitHub</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-5">
+                        <h1>Katvan</h1>
+                        <p class="lead">A simple, cross-platform editor for <a href="https://typst.app" target="_blank">Typst</a> files with a bias for Right-to-Left languages</p>
+                        <div>
+                            <a href="#download" class="btn-hero">
+                                <i class="fas fa-download"></i> Download
+                            </a>
+                            <a href="https://github.com/IgKh/katvan" class="btn-hero-outline">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div id="screenshotCarousel" class="carousel" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <a href="/assets/screenshot-main.png" target="_blank">
+                                        <img class="d-block"
+                                            src="/assets/screenshot-main.png"
+                                            alt="Screenshot of main window on Linux in light mode"
+                                            title="The main window on Linux in light mode"
+                                            loading="lazy" />
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="/assets/screenshot-main-dark.png" target="_blank">
+                                        <img class="d-block"
+                                             src="/assets/screenshot-main-dark.png"
+                                             alt="Screenshot of main window on Linux in dark mode"
+                                             title="The main window on Linux in dark mode"
+                                             loading="lazy"/>
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="/assets/screenshot-main-win.png" target="_blank">
+                                        <img class="d-block"
+                                            src="/assets/screenshot-main-win.png"
+                                            alt="Screenshot of main window on Windows"
+                                            title="The main window on Windows 10"
+                                            loading="lazy" />
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="/assets/screenshot-symbol-picker.png" target="_blank">
+                                        <img class="d-block"
+                                            src="/assets/screenshot-symbol-picker.png"
+                                            alt="Screenshot of the symbol picker dialog"
+                                            title="Symbol picker dialog"
+                                            loading="lazy" />
+                                    </a>
+                                </div>
+                                <div class="carousel-item">
+                                    <a href="/assets/screenshot-settings.png" target="_blank">
+                                        <img class="d-block"
+                                            src="/assets/screenshot-settings.png"
+                                            alt="Screenshot of the editor settings dialog"
+                                            title="Editor settings dialog"
+                                            loading="lazy" />
+                                        </a>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#screenshotCarousel" data-bs-slide="prev">
+                                <i class="fa fa-chevron-circle-left carousel-ctrl-icon" aria-hidden="true"></i>
+                                <span class="visually-hidden">Previous Screenshot</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#screenshotCarousel" data-bs-slide="next">
+                                <i class="fa fa-chevron-circle-right carousel-ctrl-icon" aria-hidden="true"></i>
+                                <span class="visually-hidden">Next Screenshot</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Showcase -->
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <div class="text-center">
+                                <i class="fas fa-language feature-icon"></i>
+                            </div>
+                            <h4 class="text-center">Focus on Right-to-Left</h4>
+                            <p>
+                                Write (and edit!) complex technical documents in languages using bi-directional scripts without losing your mind:
+                            </p>
+                            <ul>
+                                <li>Automatic isolation of math and code blocks</li>
+                                <li>Smart line directionality heuristics</li>
+                                <li>Accurate cursor movements</li>
+                                <li>Easy-to-access manual BiDi controls</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <div class="text-center">
+                                <i class="fas fa-code feature-icon"></i>
+                            </div>
+                            <h4 class="text-center">Typst Native</h4>
+                            <p>
+                                Comes fully-integrated out of the box with the Typst compiler:
+                            </p>
+                            <ul>
+                                <li>Intelligent syntax highlighting and spell checking</li>
+                                <li>Live preview with editor cursor synchronization</li>
+                                <li>Auto-completion</li>
+                                <li>Quick access to Typst documentation</li>
+                                <li>Syntax and context aware editing aides</li>
+                                <li>And more!</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <div class="text-center">
+                                <i class="fas fa-desktop feature-icon"></i>
+
+                            </div>
+                            <h4 class="text-center">Cross-Platform and Local</h4>
+                            <p>
+                                Runs completely locally as a native application across Linux, Windows, and macOS.
+                                Quick startup, responsive editing experience, and you are in full control of your data.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 mb-4">
+                        <div class="feature-card">
+                            <div class="text-center">
+                                <i class="fas fa-heart feature-icon"></i>
+                            </div>
+                            <h4 class="text-center">Open Source Software</h4>
+                            <p>
+                                Katvan is free and open source software offered under the <a href="https://choosealicense.com/licenses/gpl-3.0/" target="_blank">GNU General Public License v3</a>.
+                                You are allowed and encouraged to use, study, modify and distribute the source code under the terms of the license.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloads -->
+        <section id="download" class="download-section">
+            <div class="container">
+                <div class="section-title text-white">
+                    <h2>Download Katvan</h2>
+                    <p class="section-subtitle text-light">
+                        The most recent version is {{ release.version }}, released on {{ release.published_at | date(format="%Y-%m-%d") }}.
+                        See the <a href="{{ release.html_url }}" class="text-white">changelog</a> for details.
+                    </p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="download-card">
+                            <div class="platform-icon">
+                                <i class="fab fa-linux"></i>
+                            </div>
+                            <h4>Linux</h4>
+
+                            <p>AppImage</p>
+                            <p class="text-muted">Self contained package, appropriate for most distributions.</p>
+                            <a href="https://github.com/IgKh/katvan/releases/download/v{{ release.version }}/Katvan-{{ release.version }}-x86_64.AppImage" class="download-btn">
+                                <i class="fas fa-download"></i> 64-bit Intel/AMD Systems
+                            </a>
+                            <a href="https://github.com/IgKh/katvan/releases/download/v{{ release.version }}/Katvan-{{ release.version }}-aarch64.AppImage" class="download-btn">
+                                <i class="fas fa-download"></i> 64-bit ARM Systems
+                            </a>
+
+                            <p>Flatpak</p>
+                            <p class="text-muted">A containerized build, for those who need it.</p>
+                            <a href="https://flathub.org/apps/app.katvan.Katvan" target="_blank">
+                                <img src="/assets/flathub.webp" width="240" alt="Get it on Flathub" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="download-card">
+                            <div class="platform-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <h4>Windows</h4>
+                            <p>Windows 10/11 (64-bit Intel/AMD)</p>
+                            <p class="text-muted">Available either as a portable application or as a traditional installer.</p>
+                            <a href="https://github.com/IgKh/katvan/releases/download/v{{ release.version }}/katvan-{{ release.version }}-windows-x64-portable.zip" class="download-btn">
+                                <i class="fas fa-download"></i> Portable ZIP
+                            </a>
+                            <a href="https://github.com/IgKh/katvan/releases/download/v{{ release.version }}/katvan-{{ release.version }}-windows-x64-installer.exe" class="download-btn">
+                                <i class="fas fa-download"></i> Installer
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="download-card">
+                            <div class="platform-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <h4>macOS</h4>
+                            <p>macOS 12+</p>
+                            <p class="text-muted">
+                                Katvan for macOS is <strong>still EXPERIMENTAL and under active development</strong>, and therefore has no binary releases yet. Interested users
+                                may build it from source for now.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="download-card">
+                            <div class="platform-icon">
+                                <i class="fas fa-gear"></i>
+                            </div>
+                            <h4>Source Code</h4>
+                            <p class="text-muted">
+                                Find the instructions for building from source in the project <a href="https://github.com/IgKh/katvan?tab=readme-ov-file#from-source">README</a>.
+                            </p>
+                            <a href="https://github.com/IgKh/katvan/releases/download/v{{ release.version }}/katvan-{{ release.version }}-src.tar.gz" class="download-btn">
+                                <i class="fas fa-download"></i> Source Tarball
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="mb-0 float-start">Copyright &copy; 2026 Igor Khanin</p>
+                        <p class="mb-0 float-end">Made in <span role="img" aria-label="Israel">🇮🇱</span> with <span role="img" aria-label="love">❤️</span></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/assets/bootstrap-5.3.8.bundle.min.js"></script>
+    </body>
+</html>
