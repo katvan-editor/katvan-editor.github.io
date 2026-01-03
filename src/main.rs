@@ -1,31 +1,37 @@
-use std::path::{Path, PathBuf};
+use std::{
+    ffi::OsStr,
+    fs::File,
+    io::Write,
+    path::{Path, PathBuf},
+};
 
 use anyhow::Context;
 use serde::{Deserialize, Serialize};
 use tera::Tera;
 
-#[derive(argh::FromArgs)]
-#[argh(description = "Katvan homepage generator")]
-struct Parameters {
-    #[argh(positional, description = "output directory")]
-    out_dir: PathBuf,
-}
-
 fn main() -> anyhow::Result<()> {
+    let args: Vec<_> = std::env::args().collect();
+    let out_dir = match &args[..] {
+        [_, out_dir] => PathBuf::from(out_dir),
+        _ => {
+            anyhow::bail!("Usage: katvan-web <output directory>");
+        }
+    };
+
     let tera = Tera::new("templates/**/*.html")?;
 
-    let params: Parameters = argh::from_env();
-    let out_dir = &params.out_dir;
+    std::fs::create_dir_all(&out_dir).context("Failed creating output directory")?;
 
-    std::fs::create_dir_all(out_dir).context("Failed creating output directory")?;
-
-    generate_index(&tera, out_dir).context("Failed to generate index page")?;
+    generate_index(&tera, &out_dir).context("Failed to generate index page")?;
 
     copy_directory_tree(Path::new("assets"), &out_dir.join("assets"))
         .context("Failed to copy assets")?;
 
     copy_directory_tree(Path::new(".well-known"), &out_dir.join(".well-known"))
         .context("Failed to copy well-known files")?;
+
+    generate_screenshot_previews(Path::new("assets/screenshots"), &out_dir.join("assets"))
+        .context("Failed to generate screenshot previews")?;
 
     Ok(())
 }
@@ -83,4 +89,31 @@ fn get_latest_release() -> anyhow::Result<ReleaseData> {
     data.version = String::from(data.version.trim_start_matches('v'));
 
     Ok(data)
+}
+
+fn generate_screenshot_previews(src_path: &Path, dst_path: &Path) -> anyhow::Result<()> {
+    for entry in globwalk::glob(format!("{}/screenshot-*.png", src_path.to_string_lossy()))? {
+        let Ok(entry) = entry else { continue };
+        let path = entry.path();
+
+        let img = image::ImageReader::open(path)?.decode()?;
+        let img = img.resize(std::u32::MAX, 450, image::imageops::FilterType::CatmullRom);
+
+        let encoder = webp::Encoder::from_image(&img)
+            .map_err(|e| anyhow::format_err!("Error in creating encoder: {e}"))?;
+
+        let buff = encoder.encode(90.0);
+
+        let target = dst_path.join(
+            path.file_stem()
+                .and_then(OsStr::to_str)
+                .unwrap_or_default()
+                .to_owned()
+                + "-preview.webp",
+        );
+        let mut file = File::create(target)?;
+
+        file.write(&buff)?;
+    }
+    Ok(())
 }

@@ -5,7 +5,9 @@ publish = false
 
 [dependencies]
 anyhow = "1"
-argh = "0.1"
-serde = "1"
+globwalk = "0.9"
+image = { version = "0.25", default-features = false, features = ["png"] }
+serde = { version = "1", features = ["derive"] }
 tera = "1"
 ureq = { version = "3.1", features = ["json"] }
+webp = "0.3"
