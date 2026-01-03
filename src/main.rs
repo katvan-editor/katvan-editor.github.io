@@ -51,8 +51,12 @@ fn copy_directory_tree(src: &Path, dest: &Path) -> anyhow::Result<()> {
     for entry in std::fs::read_dir(src)? {
         let entry = entry?;
         if entry.file_type()?.is_dir() {
-            // Intentionally flatten the tree at the destination
-            copy_directory_tree(&entry.path(), dest)?;
+            // Flatten the screenshots directory for backward compatibility, keep the rest
+            if entry.file_name() == "screenshots" {
+                copy_directory_tree(&entry.path(), dest)?;
+            } else {
+                copy_directory_tree(&entry.path(), &dest.join(entry.file_name()))?;
+            }
         } else {
             std::fs::copy(entry.path(), dest.join(entry.file_name()))?;
         }
