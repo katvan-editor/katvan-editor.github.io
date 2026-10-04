@@ -97,7 +97,7 @@ fn generate_screenshot_previews(src_path: &Path, dst_path: &Path) -> anyhow::Res
         let path = entry.path();
 
         let img = image::ImageReader::open(path)?.decode()?;
-        let img = img.resize(std::u32::MAX, 450, image::imageops::FilterType::CatmullRom);
+        let img = img.resize(u32::MAX, 450, image::imageops::FilterType::CatmullRom);
 
         let encoder = webp::Encoder::from_image(&img)
             .map_err(|e| anyhow::format_err!("Error in creating encoder: {e}"))?;
